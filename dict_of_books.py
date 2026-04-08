@@ -63,6 +63,15 @@ def return_book(library, title):
         print(f"\nКнига '{title}' отмечена как вернувшаяся в библиотеку.")
 
 
+#  Поиск книги по названию
+def find_book(library, title):
+    if title not in library:
+        print(f"\nКнига '{title}' отсутствует в списке книг библиотеки.")
+        return
+#   dict = {}
+    print(f"Информация о книге '{title}':\n\t- автор: {library[title]['автор']},\n\t- год издания: {library[title]['год_издания']}")
+
+
 library = {
     "Война и мир": {
         "автор": "Лев Толстой",
@@ -80,28 +89,31 @@ library = {
 # author = "Лев Толстой"
 # year = 1980
 # add_book(library, title, author, year)
-title = "Лолита"
-author = "Владимир Набоков"
-year = 1999
-add_book(library, title, author, year)
+# title = "Лолита"
+# author = "Владимир Набоков"
+# year = 1999
+# add_book(library, title, author, year)
 # print('\n', library)  #  для контроля происходящего
-
+#
 # title = 'Война и мир'
 # remove_book(library, title)
 # print("\n", library)  #  для контроля происходящего
 # title = 'Война и мир'
 # remove_book(library, title)
 # print("\n", library)  #  для контроля происходящего
-
-title = "QWERTY"
-issue_book(library, title)
-return_book(library, title)
-title = "Лолита"
-issue_book(library, title)
-title = "Война и мир"
-issue_book(library, title)
-issue_book(library, title)
+#
+# title = "QWERTY"
+# issue_book(library, title)
+# return_book(library, title)
+# title = "Лолита"
+# issue_book(library, title)
+# title = "Война и мир"
+# issue_book(library, title)
+# issue_book(library, title)
 title = "Мастера и Маргарита"
-return_book(library, title)
-return_book(library, title)
-print("\n", library)  #  для контроля происходящего
+# return_book(library, title)
+# return_book(library, title)
+# print("\n", library)  #  для контроля происходящего
+find_book(library, title)
+title = "QWERTY"
+find_book(library, title)
