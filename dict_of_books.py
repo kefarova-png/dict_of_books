@@ -80,6 +80,41 @@ def find_book(library, title):
   - {presence_dict[library[title]['наличие']]}.''')
 
 
+def main_menu():
+    while True:
+        print("\n--- Меню библиотеки ---")
+        print("1. Посмотреть список книг")
+        print("2. Найти книгу")
+        print("3. Взять книгу")
+        print("4. Вернуть книгу")
+        print("5. Добавить/Обновить книгу")
+        print("6. Удалить книгу")
+        print("7. Выйти")
+        choice = input("Выберите пункт меню (1-7): ")
+        if choice == '1':
+            book_list_view(library)
+        elif choice == '2':
+            print('Модуль "Найти книгу" пока не реализован.')
+            # find_book(library, title)  #  необходимо реализовать функционал пользовательского ввода
+        elif choice == '3':
+            print('Модуль "Взять книгу" пока не реализован.')
+            # issue_book(library, title)  #  необходимо реализовать функционал пользовательского ввода
+        elif choice == '4':
+            # return_book(library, title)  #  необходимо реализовать функционал пользовательского ввода
+            print('Модуль "Возвратить книгу" пока не реализован.')
+        elif choice == '5':
+            print('Модуль "Добавления/Обновления книг" пока не реализован.')
+            # add_book(library, title, author, year)  #  необходимо реализовать функционал пользовательского ввода
+        elif choice == '6':
+            print('Модуль "Удаления книги" пока не реализован.')
+            # remove_book(library, title)  #  необходимо реализовать функционал пользовательского ввода
+        elif choice == '7':
+            print("Работа программы завершена. Библиотека закрыта. Изменения не сохранены.")
+            break
+        else:
+            print("Некорректный выбор. Попробуйте снова.")
+
+
 library = {
     "Война и мир": {
         "автор": "Лев Толстой",
@@ -90,17 +125,25 @@ library = {
         "автор": "Михаил Булгаков",
         "год_издания": 1967,
         "наличие": "False"
+    },
+    "Лолита": {
+        "автор": "Владимир Набоков",
+        "год_издания": 1999,
+        "наличие": "None"
     }
 }
+
+
+main_menu()
 # book_list_view(library)
 # title = "Война и мир"
 # author = "Лев Толстой"
 # year = 1980
 # add_book(library, title, author, year)
-title = "Лолита"
-author = "Владимир Набоков"
-year = 1999
-add_book(library, title, author, year)
+# title = "Лолита"
+# author = "Владимир Набоков"
+# year = 1999
+# add_book(library, title, author, year)
 # print('\n', library)  #  для контроля происходящего
 #
 # title = 'Война и мир'
@@ -110,7 +153,7 @@ add_book(library, title, author, year)
 # remove_book(library, title)
 # print("\n", library)  #  для контроля происходящего
 #
-title = "QWERTY"
+# title = "QWERTY"
 # issue_book(library, title)
 # return_book(library, title)
 # title = "Лолита"
@@ -122,7 +165,7 @@ title = "QWERTY"
 # return_book(library, title)
 # return_book(library, title)
 # print("\n", library)  #  для контроля происходящего
-find_book(library, "QWERTY")
-find_book(library, "Лолита")
-find_book(library, "Мастера и Маргарита")
-find_book(library, "Война и мир")
+# find_book(library, "QWERTY")
+# find_book(library, "Лолита")
+# find_book(library, "Мастера и Маргарита")
+# find_book(library, "Война и мир")
