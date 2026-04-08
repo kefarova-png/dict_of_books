@@ -17,9 +17,7 @@ def add_book(library, title, author, year):
             if choice == 'нет':
                 print(f"Обновление записи о книге '{title}' отменено.")
                 return
-            if choice == 'да':
-                book_info = library[title]  #  получаем словарь книги title для обновления
-            else:
+            if choice != 'да':
                 print("Ответ не принят. Пожалуста, в следующий раз введите или ДА, или НЕТ.")
         book_action = 'Обновление'
         presence = library[title]['наличие']
@@ -29,6 +27,14 @@ def add_book(library, title, author, year):
     library[title] = {"автор": author, "год_издания": year, "наличие": presence}
     print(f"\n{book_action} записи о книге '{title}' завершено:")
     print(f"Книга '{title}' ({author}, {year})")
+
+ #  Удаление книги из библиотеки
+def remove_book(library, title):
+    if title not in library:
+        print(f"\nКнига '{title}'отсутствует в библиотеке.")
+    else:
+        del library[title]
+        print(f"\nКнига '{title}' успешно удалена из библиотеки.")
 
 
 library = {
@@ -43,13 +49,20 @@ library = {
         "наличие": "False"
     }
 }
-book_list_view(library)
-title = "Война и мир"
-author = "Лев Толстой"
-year = 1980
-add_book(library, title, author, year)
-title = "Лолита"
-author = "Владимир Набоков"
-year = 1999
-add_book(library, title, author, year)
-print('\n', library)  #  для контроля происходящего
+# book_list_view(library)
+# title = "Война и мир"
+# author = "Лев Толстой"
+# year = 1980
+# add_book(library, title, author, year)
+# title = "Лолита"
+# author = "Владимир Набоков"
+# year = 1999
+# add_book(library, title, author, year)
+# print('\n', library)  #  для контроля происходящего
+title = 'Война и мир'
+remove_book(library, title)
+print("\n", library)  #  для контроля происходящего
+title = 'Война и мир'
+remove_book(library, title)
+print("\n", library)  #  для контроля происходящего
+
