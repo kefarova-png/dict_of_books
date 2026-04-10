@@ -9,7 +9,7 @@ def book_list_view(library):
 
 
 #  Добавление/обновление книги
-def add_book(library, title, author, year):
+def add_book(library):
     choice = ''  #  параметр решения об обновлении
     if title in library:
         print(f"\nКнига '{title}' уже существует.")
@@ -31,7 +31,7 @@ def add_book(library, title, author, year):
 
 
 #  Удаление книги из библиотеки
-def remove_book(library, title):
+def remove_book(library):
     if title not in library:
         print(f"\nКнига '{title}'отсутствует в списке книг библиотеки.")
     else:
@@ -40,7 +40,7 @@ def remove_book(library, title):
 
 
 #  Выдача книги
-def issue_book(library, title):
+def issue_book(library):
     if title not in library:
         print(f"\nКнига '{title}' отсутствует в списке книг библиотеки.")
         return
@@ -52,7 +52,7 @@ def issue_book(library, title):
 
 
 #  Возврат книги
-def return_book(library, title):
+def return_book(library):
     if title not in library:
         print(f"\nКнига '{title}' отсутствует в списке книг библиотеки.")
         return
@@ -64,7 +64,7 @@ def return_book(library, title):
 
 
 #  Поиск книги по названию с выводом статуса (наличия)
-def find_book(library, title):
+def find_book(library):
     if title not in library:
         print(f"\nКнига '{title}' отсутствует в списке книг библиотеки.")
         return
@@ -80,32 +80,36 @@ def find_book(library, title):
   - {presence_dict[library[title]['наличие']]}.''')
 
 
+def library_exit(library):
+    #  выход пока без сохранения изменений library
+    print("\nРабота программы завершена. \nБиблиотека закрыта. \nИзменения не сохранены.")
+
+
 def main_menu():
     dict_menu = {
-    1: "Посмотреть список книг",
-    2: "Найти книгу",
-    3: "Взять книгу",
-    4: "Вернуть книгу",
-    5: "Добавить/Обновить книгу",
-    6: "Удалить книгу",
-    7: "Выйти"
-}
+        1: ["Посмотреть список книг", book_list_view],
+        2: ["Найти книгу", find_book],
+        3: ["Взять книгу", issue_book],
+        4: ["Вернуть книгу", return_book],
+        5: ["Добавить/Обновить книгу", add_book],
+        6: ["Удалить книгу", remove_book],
+        7: ["Выйти", library_exit]
+    }
+    max_number = len(dict_menu)
     while True:
         print("\n--- Меню библиотеки ---")
         for key in dict_menu:
-            print(f"{key}. {dict_menu[key]}")  #  вывод меню
+            print(f"{key}. {dict_menu[key][0]}")  #  ключ словаря и 1-й элемент списка
         try:
-            choice = int(input("\nВыберите пункт меню (1-7): ").strip())  #  ввод выбора пользователя (с фильтром)
-            if choice == 1:
-                book_list_view(library)
-            elif choice == 7:
-                print("\nРабота программы завершена. \nБиблиотека закрыта. \nИзменения не сохранены.")
-                break
-            else:  #  для НЕреализованного функционала:
-                print(f'\nМодуль "{dict_menu[choice]}" пока не реализован.')  #  необходимо реализовать функционал пользовательского ввода
-        except:
-            print("Некорректный выбор. Попробуйте снова.")
-
+            choice = int(input(f"\nВыберите пункт меню (1-{max_number}): ").strip())
+            if choice in dict_menu:
+                function_call = dict_menu[choice][1](library)  #  Вызов функции 2-й элемент списка
+                if choice == 7:  # Если выбран выход – прерываем цикл
+                    break
+            else:
+                print("Введённый номер отсутствует в списке. Попробуйте снова.")
+        except ValueError:
+            print(f"Ввод должен быть числом [1-{max_number}]. Попробуйте снова.")
 
 
 library = {
@@ -125,40 +129,9 @@ library = {
         "наличие": "None"
     }
 }
-
-
+#  Некоторые функции будут требовать от пользователя ввода значений переменных title, author, year.
+#  Пока это не реализовано, эти значения заданы заранее:
+title = "Война и мир"
+author = "Лев Толстой"
+year = 1980
 main_menu()
-# book_list_view(library)
-# title = "Война и мир"
-# author = "Лев Толстой"
-# year = 1980
-# add_book(library, title, author, year)
-# title = "Лолита"
-# author = "Владимир Набоков"
-# year = 1999
-# add_book(library, title, author, year)
-# print('\n', library)  #  для контроля происходящего
-#
-# title = 'Война и мир'
-# remove_book(library, title)
-# print("\n", library)  #  для контроля происходящего
-# title = 'Война и мир'
-# remove_book(library, title)
-# print("\n", library)  #  для контроля происходящего
-#
-# title = "QWERTY"
-# issue_book(library, title)
-# return_book(library, title)
-# title = "Лолита"
-# issue_book(library, title)
-# title = "Война и мир"
-# issue_book(library, title)
-# issue_book(library, title)
-# title = "Мастера и Маргарита"
-# return_book(library, title)
-# return_book(library, title)
-# print("\n", library)  #  для контроля происходящего
-# find_book(library, "QWERTY")
-# find_book(library, "Лолита")
-# find_book(library, "Мастера и Маргарита")
-# find_book(library, "Война и мир")
